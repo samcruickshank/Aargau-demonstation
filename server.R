@@ -31,7 +31,7 @@ shinyServer(function(input, output) {
    facets<-paste(input$par2,"~.") 
    p<-ggplot(simcode,aes_string(input$focal,fill=input$par1))+geom_density(alpha=0.5,aes_string(fill=input$par1),position="identity")+theme_bw()+xlab("Absolute Bias")+geom_vline(data=summaries,aes_string(xintercept=input$summarystat,colour=input$par1),size=1.5,linetype="dotted")+facet_grid(facets,scales="free_y")
   
-  print(p)
+  p
     })
   
   ###bias summary table###
@@ -87,7 +87,7 @@ shinyServer(function(input, output) {
     facets<-paste(input$par2,"~.") 
     pCI<-ggplot(simcode,aes_string("occ.CIwidth",fill=input$par1))+geom_density(alpha=0.5,aes_string(fill=input$par1),position="identity")+theme_bw()+xlab("Width of occupancy 95% Credible Intervals")+geom_vline(data=summaries,aes_string(xintercept=input$summarystat,colour=input$par1),size=1.5,linetype="dotted")+facet_grid(facets,scales="free_y")
     
-    print(pCI)
+    pCI
   })
   
   
