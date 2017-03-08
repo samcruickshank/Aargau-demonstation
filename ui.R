@@ -22,7 +22,22 @@ shinyUI(fluidPage(
       br(),
       
       radioButtons("summarystat", label = h4("Summary statistic"),
-                   choices = list("Median" = "median","Mean" = "mean"))
+                   choices = list("Median" = "median","Mean" = "mean")),
+      
+      br(),
+      br(),
+      
+      
+
+      
+      radioButtons("simset", label = h3("Characteristics of underlying simulated data"),
+                   choices = list("No NA's, constant colonisation and survival" = 1, "NA's, constant colonisation and survival" = 2,"No NA's, annual variation in colonisation and survival" =3, "NA's,  annual variation in  colonisation and survival" = 4),selected = 1)
+      
+      ####NA tab
+      ####complex thing tab
+      
+      
+      
     ),
     
     
@@ -35,11 +50,17 @@ shinyUI(fluidPage(
                  h4("Summary statistics"),
                  tableOutput("plotsum"),
                 h4("Explanatory Notes"),
-                p("These figures display the outputs of the simulations described in ", em("Cruickshank et al 2016"), " (in prep). The false-positive dynamic occupancy model described in this paper was applied to datasets generated under a range of parameter values."),
+                p("These figures display the outputs of the simulations described in ", em("Cruickshank et al 2017"), " (in prep). The false-positive dynamic occupancy model described in this paper was applied to datasets generated under a range of parameter values."),
                 p("This app allows you to explore the resulting bias (first tab), and precision (width of 95% credible intervals; second tab) for the key parameters."),
                 p("First select the parameter of interest to explore (e.g. Occupancy Bias), and select a tab to choose between visualising absolute bias or CI widths. Also select a summary statistic (mean or median). By selecting one or two parameters from the drop down menus, the figures and table will autoupdate to give the average measures of interest averaged across all values for the parameters not selected in the menus"),
                 br(),
-                p(em("Note")," Currently these visualisations only show 1/4 of the simulations I ran- specifically simulations run on datasets which contain no NA's, and in which the data-generating colonisation and survival rates did not vary between years")),
+                p("The final selection parameter allows you to view the results from each of the 4 simulation case studies described in the text. The underlying simulated data either full (no NA's) or has had 10 of the 15 years worth of simulated data converted to NA's before the model is run. Furthermore, the data was either generated with colonisation and survival rates remaining constant through time, or having slight annual variations around the mean value"),
+                br(),
+                br(),
+                p("This app was created using the packages", em("shiny"), "(v1.0.0),", em("ggplot2")," (v2.2.1), and ", em("dplyr"), "(v0.5.0) ")
+                
+                
+                ),
         tabPanel("95% Credible Interval width", plotOutput("CIwidth"),
                  br(),
                  br(),
