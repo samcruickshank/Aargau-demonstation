@@ -1,7 +1,7 @@
 # server.R
 library(ggplot2)
 library(dplyr)
-load("data/Shinydata.Rdata")
+load("Shinydata.Rdata")
 simcode$psi1.true<-as.factor(simcode$psi1.true)
 simcode$mean.col<-as.factor(simcode$mean.col)
 simcode$mean.surv<-as.factor(simcode$mean.surv)
