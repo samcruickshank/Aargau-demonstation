@@ -7,7 +7,7 @@ shinyUI(fluidPage(
                    choices = list("occupancy" = "occ.bias", "pT" = "pT.bias", "pF" = "pF.bias", "colonisation" ="col.bias", "survival"="surv.bias", "initial occupancy"="psi1.bias"), 
                    selected = "occ.bias"),
       br(),
-      br(),
+
       
       p("select parameters to visualise"),
       selectInput("par1", label = h3("Colour variable"), 
@@ -15,7 +15,7 @@ shinyUI(fluidPage(
                   selected = "pF.true"),
  
       br(),
-      br(),
+
       selectInput("par2", label = h3("Panel variable"), 
                   choices = list( "pT" = "pT.true", "pF" = "pF.true", "colonisation" ="mean.col", "survival"="mean.surv", "initial occupancy"="psi1.true","proportion confirmed" = "prop.conf.true"), 
                   selected = "pT.true"),
@@ -25,12 +25,12 @@ shinyUI(fluidPage(
                    choices = list("Median" = "median","Mean" = "mean")),
       
       br(),
-      br(),
+
       
       
 
       
-      radioButtons("simset", label = h3("Characteristics of underlying simulated data"),
+      radioButtons("simset", label = h4("Characteristics of underlying simulated data"),
                    choices = list("No NA's, constant colonisation and survival" = 1, "NA's, constant colonisation and survival" = 2,"No NA's, annual variation in colonisation and survival" =3, "NA's,  annual variation in  colonisation and survival" = 4),selected = 1)
       
       ####NA tab
