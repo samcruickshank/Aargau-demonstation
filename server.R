@@ -9,19 +9,14 @@ simcode$pT.true<-as.factor(simcode$pT.true)
 simcode$pF.true<-as.factor(simcode$pF.true)
 simcode$prop.conf.true<-as.factor(simcode$prop.conf.true)
 simcode<-filter(simcode,converged==TRUE,staticmodel==TRUE) 
-#ex1<- filter(simcode,complexdata==FALSE,NAs==FALSE) 
-#ex2<- filter(simcode,complexdata==FALSE,NAs==TRUE) 
-#ex3<- filter(simcode,complexdata==TRUE,NAs==FALSE) 
-#ex4<- filter(simcode,complexdata==TRUE,NAs==TRUE) 
- 
-#for ease for now. add toggle buttons later
+
 
 
 shinyServer(function(input, output) {
 
 
   data<-reactive({
-    if(input$simset==1) {
+if(input$simset==1) {
       filter(simcode,complexdata==FALSE,NAs==FALSE)
     } else if(input$simset==2){
       filter(simcode,complexdata==FALSE,NAs==TRUE) 
@@ -30,6 +25,7 @@ shinyServer(function(input, output) {
     } else if(input$simset==4) {
       filter(simcode,complexdata==TRUE,NAs==TRUE) 
     } else {print("fail")}
+
   })
 ####bias plot###
   
