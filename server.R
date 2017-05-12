@@ -1,7 +1,7 @@
 # server.R
 library(ggplot2)
 library(dplyr)
-load("Shinydata.RData")
+load("Shinydata.Rdata")
 simcode$psi1.true<-as.factor(simcode$psi1.true)
 simcode$mean.col<-as.factor(simcode$mean.col)
 simcode$mean.surv<-as.factor(simcode$mean.surv)
@@ -9,6 +9,7 @@ simcode$pT.true<-as.factor(simcode$pT.true)
 simcode$pF.true<-as.factor(simcode$pF.true)
 simcode$prop.conf.true<-as.factor(simcode$prop.conf.true)
 simcode<-filter(simcode,converged==TRUE,staticmodel==TRUE) 
+timebias<-filter(timebias,converged==TRUE,staticmodel==TRUE) 
 
 
 
@@ -27,6 +28,23 @@ if(input$simset==1) {
     } else {print("fail")}
 
   })
+  
+  
+  
+  bias<-reactive({
+    if(input$simset==1) {
+      filter(timebias,complexdata==FALSE,NAs==FALSE)
+    } else if(input$simset==2){
+      filter(timebias,complexdata==FALSE,NAs==TRUE) 
+    } else if(input$simset==3){
+      filter(timebias,complexdata==TRUE,NAs==FALSE) 
+    } else if(input$simset==4) {
+      filter(timebias,complexdata==TRUE,NAs==TRUE) 
+    } else {print("fail")}
+    
+  })
+  
+  
 ####bias plot###
   
   
@@ -141,6 +159,47 @@ p
     
   })
   
+  
+  ####bias through time
+  ###table
+  
+  
+  
+  output$timebiastable <- renderTable({
+    
+
+    summ<-bias() %>% filter(bias.trend.pvalue<=0.05)
+    tbtable<-data.frame(Statistic=c("Number of converged models","Number of models with significant temporal trend","Proportion of models with significant temporal trend","Minimum significant trend bias","Maximum significant trend bias"),value=c(dim(bias())[1],dim(summ)[1],(dim(summ)[1]/dim(bias())[1]),min(summ[,11]),max(summ[,11])))
+    
+    tbtable
+
+  })
+  
+  
+  ###plot
+  
+  
+  
+  
+  output$timebias <- renderPlot({
+    
+    ###I DON'T KNOW WHATI WANT TO PLOT HERE
+    summ<-bias() %>% filter(bias.trend.pvalue<=0.05)
+    
+    pCI<-ggplot(summ,aes(bias.trend))+xlab("Trend in annual occupancy bias")+xlim(min(timebias$bias.trend-0.01),max(timebias$bias.trend+0.01))+theme_bw()+geom_histogram(data=bias(),aes(bias.trend),binwidth=0.001,alpha=0.4)+geom_histogram(binwidth=0.001,fill="red",alpha=0.4)
+    
+    pCI
+  })
+  
+  output$bigbias <- renderTable({
+    comb<-expand.grid(pT.true=levels(timebias$pT.true),pF.true=levels(timebias$pF.true))
+  summ<-bias() %>% filter(bias.trend.pvalue<=0.05) %>% filter(abs(bias.trend)>0.01) %>% group_by(pT.true,pF.true) %>% summarise(.,Number=n()) %>% full_join(.,comb,by=c("pT.true","pF.true"))
+    summ[is.na(summ)]<-0
+    summ$Number<-as.integer(summ$Number)
+    summ<-arrange(summ,pT.true,pF.true) 
+    colnames(summ)<-c("pT","pF","Number of simulations with large temporal trend")
+    summ
+  })
   
   
 })
