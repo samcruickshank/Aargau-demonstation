@@ -65,7 +65,24 @@ shinyUI(fluidPage(
                  br(),
                  br(),
                  h4("Summary statistics"),
-                 tableOutput("CIsum"))
+                 tableOutput("CIsum")),
+        
+        
+        tabPanel("Occupancy bias through time", 
+                 br(),
+                 br(),
+                 plotOutput("timebias"),
+                 br(),
+                 p("This histograph shows the annual trend in occupancy bias (slope of a linear model of bias~year) for all simulations in the selected simulation scenario (grey bars), and the subset of simulations for which the trend in slope is significant (p<0.05 in linear model;red)."),
+                 br(),
+                 tableOutput("timebiastable"),
+                 br(),
+                 tableOutput("bigbias"),
+                 br(),
+                 p("Table shows the number of simulations for each combination of false-positive and detection rates, for which substantial bias in temporal occupancy trends were seen (estimated occupancy rate diverged from true occupancy rate by more than 0.01 per year"),
+                 br())
+
+                
  
     
       )
