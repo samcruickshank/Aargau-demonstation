@@ -1,0 +1,12 @@
+name: false-positive-simulations
+title: false-positive-simulations
+username:
+account: samcruickshank
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 410256
+bundleId: 1557820
+url: https://samcruickshank.shinyapps.io/false-positive-simulations/
+when: 1535457372.65094
+asMultiple: FALSE
+asStatic: FALSE
