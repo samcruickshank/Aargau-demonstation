@@ -4,20 +4,20 @@ shinyUI(fluidPage(
     sidebarPanel(
       p("Select the parameter which you would like to focus on."),
       radioButtons("focal", label = h3("Focal Parameter"), 
-                   choices = list("occupancy" = "occ.bias", "pT" = "pT.bias", "pF" = "pF.bias", "colonisation" ="col.bias", "survival"="surv.bias", "initial occupancy"="psi1.bias"), 
+                   choices = list("occupancy" = "occ.bias", "pT" = "pT.bias", "pF" = "pF.bias", "colonisation" ="col.bias", "persistence"="surv.bias", "initial occupancy"="psi1.bias"), 
                    selected = "occ.bias"),
       br(),
 
       
       p("select parameters to visualise"),
       selectInput("par1", label = h3("Colour variable"), 
-                  choices = list( "pT" = "pT.true", "pF" = "pF.true", "colonisation" ="mean.col", "survival"="mean.surv", "initial occupancy"="psi1.true","proportion confirmed" = "prop.conf.true"), 
+                  choices = list( "pT" = "pT.true", "pF" = "pF.true", "colonisation" ="mean.col", "persistence"="mean.surv", "initial occupancy"="psi1.true","proportion confirmed" = "prop.conf.true"), 
                   selected = "pF.true"),
  
       br(),
 
       selectInput("par2", label = h3("Panel variable"), 
-                  choices = list( "pT" = "pT.true", "pF" = "pF.true", "colonisation" ="mean.col", "survival"="mean.surv", "initial occupancy"="psi1.true","proportion confirmed" = "prop.conf.true"), 
+                  choices = list( "pT" = "pT.true", "pF" = "pF.true", "colonisation" ="mean.col", "persistence"="mean.surv", "initial occupancy"="psi1.true","proportion confirmed" = "prop.conf.true"), 
                   selected = "pT.true"),
       br(),
       
@@ -31,7 +31,7 @@ shinyUI(fluidPage(
 
       
       radioButtons("simset", label = h4("Characteristics of underlying simulated data"),
-                   choices = list("No NA's, constant colonisation and survival" = 1, "NA's, constant colonisation and survival" = 2,"No NA's, annual variation in colonisation and survival" =3, "NA's,  annual variation in  colonisation and survival" = 4),selected = 1)
+                   choices = list("No NA's, constant colonisation and persistence" = 1, "NA's, constant colonisation and persistence" = 2,"No NA's, annual variation in colonisation and persistence" =3, "NA's,  annual variation in  colonisation and persistence" = 4),selected = 1)
       
       ####NA tab
       ####complex thing tab
