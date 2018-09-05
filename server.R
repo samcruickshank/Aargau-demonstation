@@ -169,7 +169,7 @@ p
     
 
     summ<-bias() %>% filter(bias.trend.pvalue<=0.05)
-    tbtable<-data.frame(Statistic=c("Number of converged models","Number of models with significant temporal trend","Proportion of models with significant temporal trend","Minimum significant trend bias","Maximum significant trend bias"),value=c(dim(bias())[1],dim(summ)[1],(dim(summ)[1]/dim(bias())[1]),min(summ[,11]),max(summ[,11])))
+    tbtable<-data.frame(Statistic=c("Number of converged models","Number of models with significantly biased trend","Proportion of models with significantly biased trend","Lowest significant  bias in trend","Highest significant bias in trend"),value=c(dim(bias())[1],dim(summ)[1],(dim(summ)[1]/dim(bias())[1]),min(summ[,11]),max(summ[,11])))
     
     tbtable
 
@@ -186,7 +186,7 @@ p
     ###I DON'T KNOW WHATI WANT TO PLOT HERE
     summ<-bias() %>% filter(bias.trend.pvalue<=0.05)
     
-    pCI<-ggplot(summ,aes(bias.trend))+xlab("Trend in annual occupancy bias")+xlim(min(timebias$bias.trend-0.01),max(timebias$bias.trend+0.01))+theme_bw()+geom_histogram(data=bias(),aes(bias.trend),binwidth=0.001,alpha=0.4)+geom_histogram(binwidth=0.001,fill="red",alpha=0.4)
+    pCI<-ggplot(summ,aes(bias.trend))+xlab("Occupancy trend bias")+xlim(min(timebias$bias.trend-0.01),max(timebias$bias.trend+0.01))+theme_bw()+geom_histogram(data=bias(),aes(bias.trend),binwidth=0.001,alpha=0.4)+geom_histogram(binwidth=0.001,fill="red",alpha=0.4)
     
     pCI
   })
@@ -197,7 +197,7 @@ p
     summ[is.na(summ)]<-0
     summ$Number<-as.integer(summ$Number)
     summ<-arrange(summ,pT.true,pF.true) 
-    colnames(summ)<-c("pT","pF","Number of simulations with large temporal trend")
+    colnames(summ)<-c("pT","pF","Number of simulations with trend biased by more than 0.01")
     summ
   })
   

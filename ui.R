@@ -1,5 +1,5 @@
 shinyUI(fluidPage(
-  titlePanel("Exploration of simulation results for False positive dynamic occupancy model"),
+  titlePanel("Exploration of simulation results for false-positive dynamic occupancy model"),
   sidebarLayout(
     sidebarPanel(
       p("Select the parameter which you would like to focus on."),
@@ -50,7 +50,7 @@ shinyUI(fluidPage(
                  h4("Summary statistics"),
                  tableOutput("plotsum"),
                 h4("Explanatory Notes"),
-                p("These figures display the outputs of the simulations described in ", em("Cruickshank et al 2017"), " (in prep). The false-positive dynamic occupancy model described in this paper was applied to datasets generated under a range of parameter values."),
+                p("These figures display the outputs of the simulations described in ", em("Cruickshank et al 2018"), " (in prep). The false-positive dynamic occupancy model described in this paper was applied to datasets generated under a range of parameter values."),
                 p("This app allows you to explore the resulting bias (first tab), and precision (width of 95% credible intervals; second tab) for the key parameters."),
                 p("First select the parameter of interest to explore (e.g. Occupancy Bias), and select a tab to choose between visualising absolute bias or CI widths. Also select a summary statistic (mean or median). By selecting one or two parameters from the drop down menus, the figures and table will autoupdate to give the average measures of interest averaged across all values for the parameters not selected in the menus"),
                 br(),
@@ -68,18 +68,18 @@ shinyUI(fluidPage(
                  tableOutput("CIsum")),
         
         
-        tabPanel("Occupancy bias through time", 
+        tabPanel("Bias in occupancy trend", 
                  br(),
                  br(),
                  plotOutput("timebias"),
                  br(),
-                 p("This histograph shows the annual trend in occupancy bias (slope of a linear model of bias~year) for all simulations in the selected simulation scenario (grey bars), and the subset of simulations for which the trend in slope is significant (p<0.05 in linear model;red)."),
+                 p("This histograph shows the bias in the trend of occupancy (slope of a linear model of error~year) for all simulations in the selected simulation scenario (grey bars), and the subset of simulations for which the trend bias is significant (p<0.05 in linear model;red)."),
                  br(),
                  tableOutput("timebiastable"),
                  br(),
                  tableOutput("bigbias"),
                  br(),
-                 p("Table shows the number of simulations for each combination of false-positive and detection rates, for which substantial bias in temporal occupancy trends were seen (estimated occupancy rate diverged from true occupancy rate by more than 0.01 per year"),
+                 p("Table shows the number of simulations for each combination of false-positive and detection rates, for which substantial bias in occupancy trends were seen (bias in occupancy trend exceeded 0.01"),
                  br())
 
                 
