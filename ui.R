@@ -50,7 +50,7 @@ shinyUI(fluidPage(
                  h4("Summary statistics"),
                  tableOutput("plotsum"),
                 h4("Explanatory Notes"),
-                p("These figures display the outputs of the simulations described in ", em("Cruickshank et al 2018"), " (in prep). The false-positive dynamic occupancy model described in this paper was applied to datasets generated under a range of parameter values."),
+                p("These figures display the outputs of the simulations described in ", em("Cruickshank et al 2019, Conservation Science and Practice"), ". The false-positive dynamic occupancy model described in this paper was applied to datasets generated under a range of parameter values."),
                 p("This app allows you to explore the resulting bias (first tab), and precision (width of 95% credible intervals; second tab) for the key parameters."),
                 p("First select the parameter of interest to explore (e.g. Occupancy Bias), and select a tab to choose between visualising absolute bias or CI widths. Also select a summary statistic (mean or median). By selecting one or two parameters from the drop down menus, the figures and table will autoupdate to give the average measures of interest averaged across all values for the parameters not selected in the menus"),
                 br(),
